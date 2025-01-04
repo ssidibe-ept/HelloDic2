@@ -54,7 +54,7 @@ public class CreatePersonne {
 
         em.getTransaction().commit();
         //em.getTransaction().rollback();
-        em.close();
+        em.close(); // ferme la connexion à la base
         emf.close();
     }
 }
