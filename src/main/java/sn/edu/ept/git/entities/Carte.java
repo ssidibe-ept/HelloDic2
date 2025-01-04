@@ -20,7 +20,7 @@ public class Carte {
   private Date dateDebut;
   private Date dateFin;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.PERSIST)
   private Etudiant etudiant;
 
   @PrePersist//avant de créer pour chaque objet enregistré il va d'aboir executer lanmerthode
