@@ -24,7 +24,7 @@ public class TestInterceptor {
                 .nom("touba")
                 .prenom("Ali")
                 .build();
-//        System.out.println("####" + toubaCarte.getDateCreation);
+
 
         Carte toubaCarte = Carte.builder()
                         .code("ddk")
@@ -33,13 +33,14 @@ public class TestInterceptor {
                         .dateFin(new GregorianCalendar(2025, Calendar.DECEMBER, 8).getTime())
                         .build();
 
+        System.out.println("####" + toubaCarte.getDateCreation()); //null car l'intercepteur @PrePersist n'a pas encore été appelé
+
         em.getTransaction().begin();
-        em.persist(touba);
-//        System.out.println("####" + toubaCarte.getDateCreation); à revoir
-
+//        em.persist(touba); car si je persite carte, étudiant va etre forcement persister
         em.persist(toubaCarte);
-        em.getTransaction().commit();
+        System.out.println("####" + toubaCarte.getDateCreation()); //L'intercepteur @PrePersist a été déclenché au moment de la persistance
 
+        em.getTransaction().commit();
         em.close();
         emf.close();
 

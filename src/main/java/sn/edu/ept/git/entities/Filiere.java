@@ -15,7 +15,11 @@ public class Filiere {
     @Column(unique = true, nullable = false)
     private String nom;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEPARTEMENT")
     private Departement departement;
+
+    // Role de LAZY dans ce code
+    //Quand vous chargez une Filière, son Département associé n'est PAS immédiatement chargé de la base de données
+    //Le Département sera chargé UNIQUEMENT lorsque vous y accédez explicitement dans votre code via filiere.getDepartement()
 }
