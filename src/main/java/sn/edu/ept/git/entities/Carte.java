@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "carte")
 public class Carte {
-  @Id
+  @Id //la valeur de l'id ne peut pas etre changé
   private String code;
   private Date dateCreation;
   private Date dateModification;
