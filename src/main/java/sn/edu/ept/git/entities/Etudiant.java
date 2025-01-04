@@ -3,6 +3,7 @@ package sn.edu.ept.git.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 
 @Getter
@@ -20,4 +21,7 @@ public class Etudiant {
     private String telephone;
 
     private String adresse;
+
+    @OneToOne(mappedBy = "etudiant")
+    private Carte carte;
 }
