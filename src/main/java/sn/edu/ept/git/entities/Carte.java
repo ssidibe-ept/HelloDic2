@@ -1,16 +1,15 @@
 package sn.edu.ept.git.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "carte")
 public class Carte {
@@ -23,4 +22,13 @@ public class Carte {
 
   @OneToOne
   private Etudiant etudiant;
+
+  @PrePersist//avant de créer pour chaque objet enregistré il va d'aboir executer lanmerthode
+  @PreUpdate // mettre à jour la carte donc date de modification change
+  public void beforeCreate(){
+    this.dateCreation = new Date();
+    this.dateModification = new Date();
+  }
+
+  // il est préférable de mettre une autre methode pour update
 }
